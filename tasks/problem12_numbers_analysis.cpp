@@ -1,3 +1,11 @@
+/*
+Program: Numbers Analysis
+
+Description:
+This program reads three numbers from the user, displays the odd numbers,
+calculates the average of the even numbers, and counts how many numbers
+are divisible by 5.
+*/
 #include <iostream>
 using namespace std;
 
@@ -33,4 +41,5 @@ int main()
     cout << "Numbers divisible by 5 = " << ct2 << endl;
 
     return 0;
+
 }
