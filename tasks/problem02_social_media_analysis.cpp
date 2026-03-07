@@ -1,3 +1,13 @@
+/*
+Program: Influencer Tweets Analysis
+
+Description:
+This program reads data for several influencers including their followers
+and tweets. For each tweet it reads likes and retweets. The program counts
+consecutive tweets with the same likes, finds the influencer with the lowest
+number of followers, and calculates the average retweets for influencer 100.
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -14,7 +24,7 @@ int main()
         int followers, tweets;
         cin >> followers >> tweets;
 
-        // أقل followers
+        // track influencer with lowest followers
         if (i == 0)
         {
             minFollowers = followers;
@@ -36,13 +46,13 @@ int main()
             int likes, retweets;
             cin >> likes >> retweets;
 
-            // contiguous likes
+            // count consecutive tweets with same likes
             if (j > 0 && likes == prevLikes)
                 countSame++;
 
             prevLikes = likes;
 
-            // influencer 100
+            // collect retweets for influencer 100
             if (i == 99)
             {
                 sumRet += retweets;
@@ -52,14 +62,14 @@ int main()
 
         cout << "Influencer " << i+1 << " same likes = " << countSame << endl;
 
-        // متوسط influencer 100
+        // print average retweets for influencer 100
         if (i == 99 && ct > 0)
         {
             cout << "Average retweets = " << (float)sumRet / ct << endl;
         }
     }
 
-    // أقل followers
+    // display influencer with lowest followers
     cout << "Influencer with lowest followers = " << minIndex << endl;
 
     return 0;
