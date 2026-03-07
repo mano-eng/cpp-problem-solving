@@ -1,17 +1,27 @@
+/*
+Program: Tree Lumber Analysis
+
+Description:
+This program reads data about several trees and their produced lumbers.
+For each tree, it calculates the average meters produced by lumbers
+of color 'A'. It also determines the shortest tree and displays the
+number of lumbers produced from that tree.
+*/
+
 #include <iostream>
 using namespace std;
 
 int main()
 {
-    int nTrees;              // عدد الأشجار
+    int nTrees;              // number of trees
     cout << "Enter number of trees: ";
     cin >> nTrees;
 
-    int height, lumbers;     // height = ارتفاع الشجرة ، lumbers = عدد الأخشاب
-    int minHeight = 999999;  // لتحديد أقصر شجرة
-    int lumbersOfShortest;   // عدد الأخشاب للشجرة الأقصر
+    int height, lumbers;
+    int minHeight = 999999;  // track shortest tree
+    int lumbersOfShortest;
 
-    // loop تمر على كل الأشجار
+    // process all trees
     for (int i = 0; i < nTrees; i++)
     {
         cout << "Enter height of tree: ";
@@ -20,15 +30,14 @@ int main()
         cout << "Enter number of lumbers: ";
         cin >> lumbers;
 
-        // متغيرات لحساب المتوسط للأخشاب ذات اللون A
-        int sum = 0;     // مجموع الأمتار
-        int count = 0;   // عدد الأخشاب لون A
+        int sum = 0;
+        int count = 0;
 
-        // loop تمر على كل الأخشاب في هذه الشجرة
+        // process lumbers of the current tree
         for (int j = 0; j < lumbers; j++)
         {
-            char color;   // لون الخشبة (A,B,C)
-            int meters;   // عدد الأمتار المنتجة
+            char color;
+            int meters;
 
             cout << "Enter color of lumber (A/B/C): ";
             cin >> color;
@@ -36,31 +45,29 @@ int main()
             cout << "Enter meters produced: ";
             cin >> meters;
 
-            // لو لون الخشبة A نحسبها في المتوسط
+            // include only color A in the average
             if (color == 'A')
             {
-                sum += meters; // نجمع الأمتار
-                count++;       // نزيد عدد الأخشاب
+                sum += meters;
+                count++;
             }
         }
 
-        // حساب المتوسط للأخشاب لون A في هذه الشجرة
         double avg = 0;
-
-        if (count > 0)        // نتأكد إن فيه أخشاب A
+        if (count > 0)
             avg = (double)sum / count;
 
         cout << "Average meters for tree " << i+1 << " = " << avg << endl;
 
-        // تحديد أقصر شجرة
+        // update shortest tree
         if (height < minHeight)
         {
-            minHeight = height;         // تحديث أقصر ارتفاع
-            lumbersOfShortest = lumbers; // حفظ عدد الأخشاب لهذه الشجرة
+            minHeight = height;
+            lumbersOfShortest = lumbers;
         }
     }
 
-    // طباعة عدد الأخشاب الناتجة من أقصر شجرة
+    // result for shortest tree
     cout << "Number of lumbers from the shortest tree = "
          << lumbersOfShortest << endl;
 
