@@ -1,29 +1,41 @@
+/*
+Program: Barber Shop Monthly Analysis
+
+Description:
+This program analyzes customer data for a barber shop over several days.
+For each customer, it reads the type (Man or Kid), haircut duration,
+waiting time, and price. The program calculates the daily income and
+prints it only if the number of kids is greater than the number of men.
+It also tracks the longest total time (duration + waiting) spent by
+any customer during the month.
+*/
+
 #include <iostream>
 using namespace std;
 
 int main()
 {
-    int D;                 // عدد أيام الشهر
+    int D;                 // number of days
     cout << "Enter number of days: ";
     cin >> D;
 
-    int N;                 // عدد الزبائن في اليوم
-    int d, w, p;           // d = مدة الحلاقة ، w = وقت الانتظار ، p = السعر
-    char T;                // نوع الزبون (M / K)
+    int N;                 // number of customers in a day
+    int d, w, p;           // haircut duration, waiting time, price
+    char T;                // customer type (M / K)
 
-    int maxTime = -1;      // لتخزين أطول وقت (duration + waiting) خلال الشهر
+    int maxTime = -1;      // maximum (duration + waiting)
 
-    // loop على أيام الشهر
+    // process each day
     for (int day = 0; day < D; day++)
     {
         cout << "Enter number of customers: ";
         cin >> N;
 
-        int kids = 0;      // عداد الأطفال في هذا اليوم
-        int men = 0;       // عداد الرجال في هذا اليوم
-        int income = 0;    // الدخل الكلي لهذا اليوم
+        int kids = 0;
+        int men = 0;
+        int income = 0;
 
-        // loop على الزبائن في هذا اليوم
+        // process customers of the day
         for (int i = 0; i < N; i++)
         {
             cout << "Enter customer type (M/K): ";
@@ -38,30 +50,27 @@ int main()
             cout << "Enter price: ";
             cin >> p;
 
-            // جمع الدخل
             income += p;
 
-            // تحديد نوع الزبون
             if (T == 'K')
                 kids++;
 
             if (T == 'M')
                 men++;
 
-            // حساب أطول وقت قضاه زبون في الصالون
+            // update longest service + waiting time
             if ((d + w) > maxTime)
                 maxTime = d + w;
         }
 
-        // بعد انتهاء اليوم
-        // لو عدد الأطفال أكبر من الرجال نعرض الدخل
+        // print income if kids > men
         if (kids > men)
         {
             cout << "Income of this day = " << income << endl;
         }
     }
 
-    // في نهاية الشهر نعرض أطول وقت قضاه زبون
+    // final result
     cout << "Longest time spent by a customer = " << maxTime << endl;
 
     return 0;
