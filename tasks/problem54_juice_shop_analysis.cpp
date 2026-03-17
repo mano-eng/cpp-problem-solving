@@ -16,50 +16,45 @@ using namespace std;
 
 int main()
 {
-    int minCustomers = 9999;
-    int dayMin = 0;
+    int nc, min = 99999, pos1 = 0;
+    double w, max = -9999;
+    int pos2 = 0;
 
-    double maxTemp = -9999;
-    int largeCountAtMaxTemp = 0;
-
-    for(int day = 1; day <= 30; day++)
+    for(int i = 1; i <= 30; i++)
     {
-        double temp;
-        int customers;
+        cin >> w >> nc;
 
-        cin >> temp >> customers;
+        int ct = 0;  // ✔️ يتصفر لكل يوم
 
-        // أقل عدد عملاء
-        if(customers < minCustomers)
+        for(int j = 1; j <= nc; j++)
         {
-            minCustomers = customers;
-            dayMin = day;
+            string t;
+            char s;
+            double p;
+
+            cin >> t >> s >> p;
+
+            if(s == 'L')
+                ct++;
         }
 
-        int largeCount = 0;
-
-        for(int i = 1; i <= customers; i++)
+        // أقل عدد عملاء
+        if(nc < min)
         {
-            string type;
-            char size;
-            double price;
-
-            cin >> type >> size >> price;
-
-            if(size == 'L')
-                largeCount++;
+            min = nc;
+            pos1 = i;
         }
 
         // أعلى درجة حرارة
-        if(temp > maxTemp)
+        if(w > max)
         {
-            maxTemp = temp;
-            largeCountAtMaxTemp = largeCount;
+            max = w;
+            pos2 = ct;   //  بنخزن عدد الـ Large
         }
     }
 
-    cout << "Day with lowest customers = " << dayMin << endl;
-    cout << "Large cups on hottest day = " << largeCountAtMaxTemp << endl;
+    cout << pos1 << endl;
+    cout << pos2 << endl;
 
     return 0;
 }
