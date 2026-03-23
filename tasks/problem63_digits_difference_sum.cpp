@@ -3,6 +3,7 @@
 // Take digit i from first number and digit (i+1) from second
 // Calculate the difference and add to total
 // Print the total of differences#include <iostream>
+#include <iostream>
 using namespace std;
 
 int main()
@@ -24,7 +25,7 @@ int main()
 
         int c = 1;
 
-        // digit رقم i من num1
+        // استخراج digit رقم i من num1
         while(c < i)
         {
             t1 /= 10;
@@ -34,7 +35,7 @@ int main()
 
         c = 1;
 
-        // digit رقم i+1 من num2
+        // استخراج digit رقم i+1 من num2
         while(c < i + 1)
         {
             t2 /= 10;
