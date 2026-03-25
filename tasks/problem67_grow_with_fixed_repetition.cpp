@@ -1,29 +1,34 @@
-// problem67_grow_with_fixed_repetition.cpp
-//
-// Read numbers one by one
-// Check if numbers follow this pattern:
-// 1. Each new number must be greater than the previous (grow)
-// 2. Each number repeats B times (same count for all groups)
-// First group defines B
-// If any group breaks the pattern → print FALSE
-// Otherwise → print TRUE
+// Problem 67: Grow with Fixed Repetition
+// --------------------------------------
+// Read N numbers.
+// The sequence must follow this pattern:
+// - Each new number must be greater than the previous one.
+// - Every number appears exactly B times (same repetition count for all groups).
+// - First group defines B.
+// - Then every next group must have the same repetition count.
+// If all conditions are satisfied → print TRUE
+// Otherwise → print FALSE
 
 #include <iostream>
 using namespace std;
 
 int main()
 {
+    int N;
+    cin >> N;
+
     int prev;
     cin >> prev;
 
     int check = 0;
     int B = 0;
 
-    int curr;
-
-    while(cin >> curr)
+    for(int i = 1; i < N; i++)
     {
-        // check grow
+        int curr;
+        cin >> curr;
+
+        // must grow
         if(curr <= prev)
         {
             cout << "FALSE";
@@ -34,27 +39,32 @@ int main()
         int count = 0;
 
         // count repetition
-        while(curr == value)
+        while(i < N && curr == value)
         {
             count++;
-            if(!(cin >> curr))
-                break;
+            i++;
+
+            if(i < N)
+                cin >> curr;
         }
 
-        // set or check B
         if(check == 0)
         {
             B = count;
             check = 1;
         }
-        else if(count != B)
+        else
         {
-            cout << "FALSE";
-            return 0;
+            if(count != B)
+            {
+                cout << "FALSE";
+                return 0;
+            }
         }
 
-        // update prev
         prev = value;
+        i--; // adjust index
+
     }
 
     cout << "TRUE";
