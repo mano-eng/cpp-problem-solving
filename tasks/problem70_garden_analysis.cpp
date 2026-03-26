@@ -1,12 +1,8 @@
+/*
+Problem 70 - Garden Analysis
 
-Description:
-This program processes data for 30 gardens.
-For each garden, it reads pool dimensions, pool price per meter,
-number of trees, and price per tree.
-
-It determines:
-1) The most expensive garden.
-2) Number of pools with area greater than 20.
+Reads data for 30 gardens (pool + trees).
+Finds the most expensive garden and counts pools with area > 20.
 */
 
 #include <iostream>
@@ -21,11 +17,10 @@ int main()
     for(int i = 1; i <= 30; i++)
     {
         cin >> W >> L >> Ppol >> t >> Pt;
-         // size 
-        S = W * L;
 
+        S = W * L;
         cost = (Pt * t) + (Ppol * S);
-         // more exepensive 
+
         if(cost > max)
         {
             max = cost;
