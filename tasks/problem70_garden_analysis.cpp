@@ -21,11 +21,11 @@ int main()
     for(int i = 1; i <= 30; i++)
     {
         cin >> W >> L >> Ppol >> t >> Pt;
-
+         // size 
         S = W * L;
 
         cost = (Pt * t) + (Ppol * S);
-
+         // more exepensive 
         if(cost > max)
         {
             max = cost;
