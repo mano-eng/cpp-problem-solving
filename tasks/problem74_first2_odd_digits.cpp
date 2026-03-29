@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 
 /*
 Description:
@@ -10,45 +8,51 @@ Description:
 - Concatenate all results into one number
 */
 
+#include <iostream>
+using namespace std;
+
 int main()
 {
-    int N, val;
+    int N;
     cin >> N;
 
-    long long result = 0;
+    int val = 0;
 
-    for (int i = 1; i <= N; i++)
+    for(int i = 1; i <= N; i++)
     {
-        cin >> val;
+        int X;
+        cin >> X;
 
-        int count = 0;
-        int temp = 0;
+        int ct = 0;
+        int d1 = 0, d2 = 0;
 
-        while (val > 0 && count < 2)
+        while(X > 0)
         {
-            int dig = val % 10;
+            int d = X % 10;
 
-            if (dig % 2 == 1)
+            if(d % 2 != 0) // odd
             {
-                temp = temp * 10 + dig;  // نجمع عادي
-                count++;
+                ct++;
+
+                if(ct == 1)
+                    d1 = d;
+
+                if(ct == 2)
+                {
+                    d2 = d;
+                    break;
+                }
             }
 
-            val /= 10;
+            X = X / 10;
         }
 
-        // نعكس temp علشان يطلع بالترتيب الصح
-        int rev = 0;
-        while (temp > 0)
-        {
-            rev = rev * 10 + (temp % 10);
-            temp /= 10;
-        }
+        int y = d2 * 10 + d1;
 
-        result = result * 100 + rev;
+        val = val * 100 + y;
     }
 
-    cout << result;
+    cout << val;
 
     return 0;
 }
