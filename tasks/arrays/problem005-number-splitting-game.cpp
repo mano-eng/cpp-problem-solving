@@ -5,7 +5,6 @@ Description:
 Simulates a two-player game where a number is split into two factors.
 A player loses if the move is invalid.
 */
-
 #include <iostream>
 using namespace std;
 
@@ -26,35 +25,31 @@ int main() {
 
     while (1) {
 
-        
-
         int pos;
         cin >> pos;
 
         int num1, num2;
         cin >> num1 >> num2;
 
-        // تحقق
+        // تحقق من صحة الحركة
         if (arr[pos] <= 1 || num1 * num2 != arr[pos]) {
-            cout << "Player " << player << " lose!\n";
+            if (player == 1)
+                cout << "Second player wins\n";
+            else
+                cout << "First player wins\n";
             break;
         }
 
-        // التبديل
+        // استبدال الرقم
         arr[pos] = num1;
 
-        // الإضافة
+        // إضافة الرقم التاني
         for (int i = 0; i < 100; i++) {
             if (arr[i] == 0) {
                 arr[i] = num2;
                 break;
             }
         }
-
-        // طباعة
-        for (int i = 0; i < 100; i++)
-            cout << arr[i] << " ";
-        cout << endl;
 
         // تبديل اللاعب
         if (player == 1)
@@ -64,5 +59,4 @@ int main() {
     }
 
     return 0;
-}
 }
