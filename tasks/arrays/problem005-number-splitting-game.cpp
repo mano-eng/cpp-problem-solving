@@ -26,8 +26,7 @@ int main() {
 
     while (1) {
 
-        // طباعة اللاعب الحالي
-        cout << "Player " << player << endl;
+        
 
         int pos;
         cin >> pos;
