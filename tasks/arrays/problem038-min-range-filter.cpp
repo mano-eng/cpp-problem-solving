@@ -2,47 +2,75 @@
 Problem 038
 
 Description:
-Finds minimum position, computes average up to it, 
-and stores values greater than 5 in another array.
+Reads 30 numbers and performs operations based on user choice:
+1) Swaps each pair of adjacent elements.
+2) Finds the maximum of each group of 10 elements.
+3) Calculates the average of each group of 10 elements.
 */
+#include <iostream>
+using namespace std;
 
-#include <iostream> 
-using namespace std; 
- 
-int main() { 
-    int X[30], Y[30]; 
- 
-    for (int i = 0; i < 30; i++) 
-        cin >> X[i]; 
- 
-    for (int i = 0; i < 30; i++) 
-        Y[i] = 0; 
- 
-    int min = X[0], pos = 0; 
-    for (int i = 0; i < 30; i++) { 
-        if (X[i] < min) { 
-            min = X[i]; 
-            pos = i; 
-        } 
-    } 
- 
-    int sum = 0, count = 0; 
-    for (int i = 1; i <= pos; i++) { 
-        sum += X[i]; 
-        count++; 
-    } 
-    cout << (double)sum / count << endl; 
- 
-    int d = 0; 
-    for (int i = 1; i <= pos; i++) { 
-        if (X[i] > 5) { 
-            Y[d] = X[i]; 
-            d++; 
-        } 
-    } 
- 
-    for (int i = 0; i < 30; i++) 
-        cout << Y[i] << " "; 
- 
-    return 0; 
+int main()
+{
+    int X[30], choice;
+
+    // قراءة البيانات
+    for(int i = 0; i < 30; i++)
+        cin >> X[i];
+
+    cin >> choice;
+
+    // ================== choice 1 ==================
+    if(choice == 1)
+    {
+        // swap كل عنصر مع اللي بعده
+        for(int i = 0; i < 29; i += 2)
+        {
+            int temp = X[i];
+            X[i] = X[i+1];
+            X[i+1] = temp;
+        }
+
+        // طباعة
+        for(int i = 0; i < 30; i++)
+            cout << X[i] << " ";
+    }
+
+    // ================== choice 2 ==================
+    else if(choice == 2)
+    {
+        // كل 10 عناصر
+        for(int i = 0; i < 30; i += 10)
+        {
+            int max = X[i];
+
+            for(int j = i; j < i + 10; j++)
+            {
+                if(X[j] > max)
+                    max = X[j];
+            }
+
+            cout << max << " ";
+        }
+    }
+
+    // ================== choice 3 ==================
+    else if(choice == 3)
+    {
+        // كل 10 عناصر
+        for(int i = 0; i < 30; i += 10)
+        {
+            int sum = 0;
+
+            for(int j = i; j < i + 10; j++)
+            {
+                sum += X[j];
+            }
+
+            double avg = (double)sum / 10;
+            cout << avg << " ";
+        }
+    }
+
+    return 0;
 }
